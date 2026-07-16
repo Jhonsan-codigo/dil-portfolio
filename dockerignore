@@ -1,0 +1,7 @@
+target/
+nbproject/
+build/
+dist/
+*.class
+*.log
+.DS_Store
