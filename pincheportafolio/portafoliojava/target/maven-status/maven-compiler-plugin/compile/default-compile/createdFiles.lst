@@ -1,0 +1,7 @@
+com\portafolio\modelo\SobreMi.class
+com\portafolio\util\PortfolioRepository.class
+com\portafolio\modelo\PortfolioData.class
+com\portafolio\modelo\Semana.class
+com\portafolio\util\AdminUserStore.class
+com\portafolio\modelo\Archivo.class
+com\portafolio\modelo\Proyecto.class

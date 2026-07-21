@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: dil-portfolio
+    runtime: docker
+    plan: free
+    branch: main
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: JAVA_OPTS
+        value: -Xmx512m
