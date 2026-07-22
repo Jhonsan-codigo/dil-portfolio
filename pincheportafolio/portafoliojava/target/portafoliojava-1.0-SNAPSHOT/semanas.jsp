@@ -37,11 +37,46 @@
 
                 <div class="files">
                     <strong>Archivos:</strong>
-                    <% if (s.getArchivos().isEmpty()) { %>
-                        <em>Sin archivos.</em>
-                    <% } else { for (Archivo a : s.getArchivos()) { %>
-                        <a href="download.jsp?id=<%= a.getId() %>">⬇ <%= a.getNombreOriginal() %> <small><%= a.getTamanoLegible() %></small></a>
-                    <% }} %>
+                    <% 
+                        // Si existen archivos asociados en la memoria Java, los renderiza
+                        if (s.getArchivos() != null && !s.getArchivos().isEmpty()) { 
+                            for (Archivo a : s.getArchivos()) { 
+                    %>
+                                <a href="download.jsp?id=<%= a.getId() %>">⬇ <%= a.getNombreOriginal() %> <small><%= a.getTamanoLegible() %></small></a>
+                    <% 
+                            } 
+                        } else { 
+                            // Si la lista está vacía, genera dinámicamente los links a assets/archivos/
+                            String numSemana = String.format("%02d", s.getNumero());
+                            int n = s.getNumero();
+                            boolean tieneArchivos = false;
+                    %>
+                            <%-- Descarga ZIP (Semanas 01 a 11) --%>
+                            <% if (n <= 11) { tieneArchivos = true; %>
+                                <a href="assets/archivos/semana<%= numSemana %>.zip" download>
+                                    ⬇ Proyecto (.zip)
+                                </a>
+                            <% } %>
+
+                            <%-- Vista previa Imagen (Semanas 01 a 08) --%>
+                            <% if (n <= 8) { tieneArchivos = true; %>
+                                <a href="assets/archivos/semana<%= numSemana %>.jpeg" target="_blank">
+                                    🖼 Evidencia (.jpeg)
+                                </a>
+                            <% } %>
+
+                            <%-- Descarga PDF (Semanas 08, 09, 12, 13) --%>
+                            <% if (n == 8 || n == 9 || n == 12 || n == 13) { tieneArchivos = true; %>
+                                <a href="assets/archivos/semana<%= numSemana %>.pdf.pdf" download>
+                                    📄 Documento (.pdf)
+                                </a>
+                            <% } %>
+
+                            <%-- Mensaje de respaldo si alguna semana futura no tiene nada --%>
+                            <% if (!tieneArchivos) { %>
+                                <em>Sin archivos.</em>
+                            <% } %>
+                    <% } %>
                 </div>
             </article>
             <% } %>

@@ -30,15 +30,8 @@
                 </div>
             </div>
 
-            <div class="hero-panel reveal">
-                <h3>Diseño + Programación</h3>
-                <p>Interfaz inspirada en paletas rojas oscuras, contraste moderno y fondo animado con líneas.</p>
-                <div class="palette">
-                    <span style="background:#730c1e">#730c1e</span>
-                    <span style="background:#210207">#210207</span>
-                    <span style="background:#480415">#480415</span>
-                    <span style="background:#140f17">#140f17</span>
-                </div>
+            <div class="hero-panel reveal" style="display: flex; align-items: center; justify-content: center; background: transparent; border: none; box-shadow: none;">
+                <img src="assets/img/gato-inteligente.png" alt="Gato Inteligente" style="max-width: 100%; max-height: 320px; object-fit: contain; filter: drop-shadow(0 0 15px rgba(115, 12, 30, 0.4));">
             </div>
         </section>
 
@@ -50,11 +43,7 @@
             </div>
 
             <div class="content-grid">
-                <%
-                    int limite = Math.min(semanas.size(), 9);
-                    for (int i = 0; i < limite; i++) {
-                        Semana s = semanas.get(i);
-                %>
+                <% for (Semana s : semanas) { %>
                 <article class="content-card reveal">
                     <span class="chapter">SEMANA <%= String.format("%02d", s.getNumero()) %></span>
                     <h3><%= s.getTema() %></h3>
